@@ -1,0 +1,1 @@
+Using Node.js make idea app and in this idea app we perform the CRUD operation . In this app we maked the API  , Routers , controllers, Model , Middleware and in this app we does not use the mongodb database i have data store in a file 
