@@ -5,6 +5,8 @@ const route = express.Router();
 const idea_controller = require ('../controllers/ideas.controller');
 
 const idea_mv = require ('../middlewares/ideas.mw');
+
+const auth_mv = require ("../middlewares/auth.mw");
 /**
  * start define the routes
  */
@@ -13,7 +15,7 @@ const idea_mv = require ('../middlewares/ideas.mw');
  * Router for fetch all ideas - 127.0.0.1:7070/ideas_app/v1/ideas
  */
 
-route.get('/ideas',idea_controller.getAllIdeas);
+route.get('/ideas',[auth_mv.verifyToken],idea_controller.getAllIdeas);
 
 
 

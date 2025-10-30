@@ -5,6 +5,25 @@
 const express = require ('express');
 
 const app = express();
+require('dotenv').config(); // it is used to bring the env file into use
+
+const mongoose = require ('mongoose');
+
+
+
+/**
+ * Make the mongodb connection
+ */
+(async()=>{
+  try{
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('MongoDB connected');
+
+  }catch(err){
+    console.log('Mongo Error',err);
+  }
+  
+})()
 
 const PORT = 7070;
 
@@ -22,6 +41,12 @@ app.use(morgan('dev'));
 const idea_route =  require ("./routers/ideas.routes");
 app.use('/ideas_app/v1',idea_route);
 
+
+
+// Bring the auth route into use
+
+const auth_route = require ('./routers/auth.routes');
+app.use('/ideas_app/v1',auth_route);
 
 
 app.listen(PORT,()=>{
